@@ -60,3 +60,49 @@ for (var i = 0; i < pacientes.length; i++) {
 }
 
 
+// criando e atrelando eventos a objetos da pagina
+// pode ser feita com uma função nomeada ou anonima
+
+// event.preventDefault e uma função que previne o pre carregamento da pagina
+// para pegar dados do paciente de um formulario e necessario, pegar o elemento pai do formulario com seu id/class
+// atribuindo variaveis para pegar o valor dos campos preenchidos.
+// createElement serve para criar uma tag de uma pagina com js, no exemplo uma tr com td dentro dela.
+// appendChild serve para associar elemetos dentro do outro como se fosse filhos desses elementos
+var botaoAdicionar = document.querySelector("#adicionar-paciente")
+botaoAdicionar.addEventListener("click", function (event) {
+    event.preventDefault();
+    var form = document.querySelector("#form-adiciona"); //pegando o elemento da pagina
+    // pegando o valor do form dentro do campo nome, peso e etc
+    var nome = form.nome.value;
+    var peso = form.peso.value;
+    var altura = form.altura.value;
+    var gordura = form.gordura.value;
+
+    // criando elementos
+    var pacienteTr = document.createElement("tr");
+
+    var nomeTd = document.createElement("td");
+    var pesoTd = document.createElement("td");
+    var alturaTd = document.createElement("td");
+    var gorduraTd = document.createElement("td");
+    var imcTd = document.createElement("td");
+
+    // passando os valores das variaveis para os elementos
+    nomeTd.textContent = nome;
+    pesoTd.textContent = peso;
+    alturaTd.textContent = altura;
+    gorduraTd.textContent = gordura;
+
+    // colocando os elementos td como filhos do pacienteTr
+    pacienteTr.appendChild(nomeTd);
+    pacienteTr.appendChild(pesoTd);
+    pacienteTr.appendChild(alturaTd);
+    pacienteTr.appendChild(gorduraTd);
+    paciente.appendChild(imcTd);
+
+    // pegando elementos dentro da tabela
+    var tabela = document.querySelector("#tabela-pacientes");
+
+    // adicionando o pacienteTr como filho da tabela
+    tabela.appendChild(pacienteTr);
+})
